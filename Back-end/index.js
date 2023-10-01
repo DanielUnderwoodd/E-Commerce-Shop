@@ -78,6 +78,24 @@ var unauthorizedCustomer = (req, res, next) => {
 // use public routes customers
 app.use("/api/customer/pb", unauthorizedCustomer, publicRoutesForCustomer);
 
+// importing private routes customers
+const privateRoutesForCustomer =
+  require("./routes/Customers/privateRoutesForCustomer")(
+    Customers,
+    sessionCustomers,
+    client,
+    jwt
+  );
+
+// protect private routes customers
+app.use(
+  "/api/customer/pv",
+  passport.authenticate("customer_private", {
+    session: false,
+  }),
+  privateRoutesForCustomer
+);
+
 app.use((req, res, next) => {
   res.status(404).send("404 Not Found");
 });
