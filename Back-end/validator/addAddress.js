@@ -9,7 +9,6 @@ const addAddressValidationRules = () => {
     body("location").notEmpty().withMessage("Enter Your address"),
   ];
 };
-
 module.exports = {
   addAddressValidationRules,
 };
