@@ -1,0 +1,22 @@
+#popover-contained{
+    transform: translate(-120px,60px) !important;
+    font-family: "Sahel" !important;
+}
+.arrow {
+    transform: translate(240px,0px) !important;
+}
+#popover-contained ul  {
+    display: flex;
+    list-style-type: none;
+    padding: 20px 0;
+    margin: auto;
+}
+ul li {
+    padding: 0px 12px;
+    font-size: 14px;
+}
+.popover-footer li:nth-child(2){
+    white-space: nowrap;
+}
+
+
