@@ -85,6 +85,8 @@ const verifyCodeLogin = (
               balance: findResponse.balance,
             };
             break;
+          case "admin":
+            cookieName = "jwtAdmin";
         }
         const token = jwt.sign(
           {

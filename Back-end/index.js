@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const Customers = require("./models/customerModel");
 const sessionCustomers = require("./models/SessionCustomer");
+const sessionAdmin = require("./models/sessionAdmin");
+const Admin = require("./models/adminModel");
 const userAgent = require("express-useragent");
 const cookieParser = require("cookie-parser");
 const authJwt = require("./config/authJwt");
@@ -18,6 +20,7 @@ app.use(
   cors({
     origin: "http://localhost:4002",
     credentials: true,
+    allowedHeaders: true,
   })
 );
 //redis config
@@ -56,6 +59,51 @@ app.use(userAgent.express());
 
 // initial passport-jwt authnication
 authJwt(client);
+
+//import data route
+
+const dataRoute = require("./routes/Data/DataRoutes");
+
+app.use("/api/data", dataRoute);
+
+// public routes admin
+const publicRoutesForAdmin = require("./routes/Admin/publicRoutesForAdmin")(
+  Admin,
+  sessionAdmin,
+  client,
+  jwt,
+  rateLimit
+);
+
+// use public routes admin
+
+var unauthorizedAdmin = (req, res, next) => {
+  if (req.cookies.jwtAdmin) {
+    res.status(500).json("Unauthorized");
+  } else {
+    next();
+  }
+};
+
+app.use("/api/admin/pb", unauthorizedAdmin, publicRoutesForAdmin);
+
+// importing private routes customers
+const privateRoutesForAdmin = require("./routes/Admin/privateRoutesForAdmin")(
+  Admin,
+  sessionAdmin,
+  client,
+  jwt
+);
+// app.use((req, res, next) => {
+//   console.log(req.cookies.jwtCustomer);
+// });
+
+// protect private routes customers
+app.use(
+  "/api/admin/pv",
+  passport.authenticate("admin_private"),
+  privateRoutesForAdmin
+);
 
 //public routes customers
 const publicRoutesForCustomer =

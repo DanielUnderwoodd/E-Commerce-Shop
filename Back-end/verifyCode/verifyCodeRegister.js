@@ -63,6 +63,8 @@ const verifyCodeRegister = (
                 balance: saveResponse.balance,
               };
               break;
+            case "admin":
+              cookieName = "jwtAdmin";
           }
 
           const token = jwt.sign(

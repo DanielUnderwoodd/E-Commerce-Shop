@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 var message = {
   from: "noreply@domain.com",
-  subject: "confirmation code",
+  subject: "verifivation code",
 };
 
 module.exports = {

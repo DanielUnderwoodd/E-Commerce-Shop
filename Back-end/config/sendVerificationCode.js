@@ -32,6 +32,31 @@ const verificationCode = async (req, res, client, Model, role) => {
                 res.status(200).json(status);
               }
               break;
+            case "admin":
+              let findResponseAdmin = await Model.findOne({
+                phoneNumber: req.body.phoneNumber,
+              });
+              if (findResponseAdmin) {
+                var message = nodemailer.message;
+                message.to = findResponseAdmin.email;
+                message.text = ` : ${verification.code} your code`;
+
+                nodemailer.transporter.sendMail(message, (error, info) => {
+                  if (error) {
+                    res.status(500).json(error);
+                  } else {
+                    res
+                      .status(200)
+                      .json(
+                        "verification code has been sent successfully through with sms and email"
+                      );
+                  }
+                });
+              } else {
+                res
+                  .status(200)
+                  .json("verification code has been sent successfully");
+              }
           }
         } catch (err) {
           res.status(400).json(err);
