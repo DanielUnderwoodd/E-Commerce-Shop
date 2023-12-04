@@ -11,7 +11,7 @@ module.exports = (Customers, sessionCustomers, client, jwt, rateLimit) => {
   // send verification code
   router.post(
     "/code",
-    coderValidationRules(),
+    //coderValidationRules(),
     validate,
     rateLimit,
     (req, res) => {
@@ -24,19 +24,19 @@ module.exports = (Customers, sessionCustomers, client, jwt, rateLimit) => {
   router.post(
     "/register",
     userValidationRules(),
-    codeValidationRules(),
-    coderValidationRules(),
+    //codeValidationRules(),
+    //coderValidationRules(),
     validate,
     async (req, res) => {
       try {
         let findResponse = await Customers.findOne({
-          phoneNumber: req.body.phoneNumber,
+          email: req.body.email,
         });
         if (findResponse) {
           res.status(500).json("This number is already in the system");
         } else {
           // try verify access code first
-          client.get(req.body.phoneNumber, (err, reply) => {
+          client.get(req.body.email, (err, reply) => {
             if (err) throw err;
             else if (!reply) {
               res.status(500).json("Code is expired");
@@ -65,19 +65,20 @@ module.exports = (Customers, sessionCustomers, client, jwt, rateLimit) => {
   // login customer
   router.post(
     "/login",
-    codeValidationRules(),
-    coderValidationRules(),
+    //codeValidationRules(),
+    //coderValidationRules(),
     validate,
     async (req, res) => {
+      console.log(req.body);
       try {
         let findResponse = await Customers.findOne({
-          phoneNumber: req.body.phoneNumber,
+          email: req.body.email,
         });
         if (findResponse === null) {
           res.status(500).json("This number wasn't found at the system");
         } else {
           // try verify access code first
-          client.get(req.body.phoneNumber, (err, reply) => {
+          client.get(req.body.email, (err, reply) => {
             if (err) throw err;
             else if (!reply) {
               res.status(500).json("Code is expired");

@@ -23,26 +23,26 @@ class SignUp extends Component {
                                     <path id="Icon" d="M0,16V14c0-2.2,3.6-4,8-4s8,1.8,8,4v2ZM4,4A4,4,0,1,1,8,8,4,4,0,0,1,4,4Z" transform="translate(453 562)" fill="#ff6a00"/>
                                 </g>
                             </svg>
-                            <h4>ورود/عضویت</h4>
-                            <h6>{this.props.phoneNumber}</h6>
+                            <h4>Login/Register</h4>
+                            <h6>{this.props.setEmail}</h6>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
                                     <Form.Group>
-                                        <Form.Control  id="code"       type="text" maxLength={5} placeholder="کد ارسالی" />
+                                        <Form.Control  id="code"       type="text" maxLength={5} placeholder="received code" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control   id="firstName" type="text"  placeholder="نام خود را وارد کنید" />
+                                        <Form.Control   id="firstName" type="text"  placeholder="Your name" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control  id="lastName"   type="text"  placeholder="نام خانوادگی خود را وارد کنید" />
+                                        <Form.Control  id="lastName"   type="text"  placeholder="Your family" />
                                     </Form.Group>
                                     <Form.Group> 
-                                        <Form.Control  id="email"       type="text"  placeholder="ایمیل خود را وارد کنید" />
+                                        <Form.Control  id="email"       type="text"  placeholder="Email" />
                                     </Form.Group>
                                     <RegisterFormFooter 
-                                        phoneNumber={this.props.phoneNumber}
+                                        setEmail={this.props.setEmail}
                                         isRegistered ={this.props.isRegistered}
                                     />
                                 </Form>

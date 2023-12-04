@@ -22,7 +22,7 @@ var Customers = Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
+    required: false,
   },
   session: [{ type: Schema.Types.String, ref: "sessionCustomers" }],
   address: [
@@ -33,7 +33,7 @@ var Customers = Schema({
       },
       phoneNumber: {
         type: String,
-        required: true,
+        required: false,
       },
       location: {
         type: String,

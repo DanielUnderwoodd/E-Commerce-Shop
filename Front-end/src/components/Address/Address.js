@@ -61,7 +61,7 @@ export default class Address extends Component {
                   fill="#FF6A00"
                 />
               </svg>
-              اضافه کردن آدرس جدید
+              Add address
             </div>
           </Modal.Header>
           {this.props.editAddressBar ? (

@@ -17,7 +17,7 @@ class CreateController {
   addUnit(req, res, next) {
     let newField = {
       name: req.body.name,
-      _id: uniqid("UOFID-"),
+      _id: uniqid(),
     };
     this.newField = newField;
   }
@@ -27,7 +27,7 @@ class CreateController {
       const newData = new this.model(this.newField);
       let saveResponse = await newData.save();
       res.status(200).json({
-        msg: `${this.resTitle} مورد نظر با موفقیت ثبت شد`,
+        msg: `${this.resTitle} successfully saved.`,
         doc: saveResponse,
       });
     } catch (err) {
@@ -35,7 +35,7 @@ class CreateController {
         case 11000:
           res
             .status(500)
-            .json(`این ${this.resTitle}  در سامانه موجود می باشد `);
+            .json(`this item: ${this.resTitle} exists. `);
           break;
         default:
           res.status(500).json(err);

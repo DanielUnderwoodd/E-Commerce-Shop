@@ -15,7 +15,7 @@ class NavigationSideBar extends Component {
       <div>
         <ListGroup className="profile-navigation profile">
           <ListGroup.Item>
-            <h4>پروفایل</h4>
+            <h4>Profile</h4>
           </ListGroup.Item>
           <ListGroup.Item>
             <ul>
@@ -36,13 +36,14 @@ class NavigationSideBar extends Component {
                   </g>
                 </svg>
               </li>
-              <li>حساب کاربری</li>
+              <a href="/customer/profile"><li>Profile</li></a>
+              {/* <li>Profile</li> */}
               <li>
                 <ArrowLeft />
               </li>
             </ul>
           </ListGroup.Item>
-          <ListGroup.Item>
+          {/* <ListGroup.Item>
             <ul>
               <li>
                 <svg
@@ -66,12 +67,12 @@ class NavigationSideBar extends Component {
                   />
                 </svg>
               </li>
-              <li>افزایش اعتبار</li>
+              <li>َAdd credit</li>
               <li>
                 <ArrowLeft />
               </li>
             </ul>
-          </ListGroup.Item>
+          </ListGroup.Item> */}
           <ListGroup.Item>
             <ul>
               <li>
@@ -89,7 +90,7 @@ class NavigationSideBar extends Component {
                   />
                 </svg>
               </li>
-              <li>لیست سفارشات</li>
+              <a href="/customer/orders"><li>Orders</li></a>
               <li>
                 <ArrowLeft />
               </li>
@@ -138,7 +139,7 @@ class NavigationSideBar extends Component {
                   </g>
                 </svg>
               </li>
-              <li>خروج</li>
+              <li>Logout</li>
               <li>
                 <ArrowLeft />
               </li>

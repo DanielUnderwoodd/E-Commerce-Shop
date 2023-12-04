@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var mongoDB = "mongodb://127.0.0.1/test";
+var mongoDB = "mongodb://127.0.0.1:27017/test";
 mongoose.set("debug", true);
 
 mongoose.connect(mongoDB, {

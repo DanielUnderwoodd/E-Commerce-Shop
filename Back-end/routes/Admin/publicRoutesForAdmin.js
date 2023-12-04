@@ -11,12 +11,12 @@ module.exports = (Admin, sessionAdmin, client, jwt, rateLimit) => {
   // send verfirication code
   router.post(
     "/code",
-    coderValidationRules(),
+    //coderValidationRules(),
     validate,
     rateLimit,
     async (req, res) => {
-      let findResponseAdmin = await Admin.findOne({
-        phoneNumber: req.body.phoneNumber,
+      let findResponseAdmin = await Admin.findOne({ 
+        email: req.body.email,
       });
       if (findResponseAdmin) {
         let role = "admin";
@@ -32,12 +32,12 @@ module.exports = (Admin, sessionAdmin, client, jwt, rateLimit) => {
     "/register",
     userValidationRules(),
     codeValidationRules(),
-    coderValidationRules(),
+    //coderValidationRules(),
     validate,
     async (req, res) => {
       try {
         let findResponse = await Admin.findOne({
-          phoneNumber: req.body.phoneNumber,
+          email: req.body.email,
         });
         if (findResponse) {
           res.status(500).json("این شماره در سامانه موجود می باشد");
@@ -59,7 +59,7 @@ module.exports = (Admin, sessionAdmin, client, jwt, rateLimit) => {
                 role
               );
             } else {
-              res.status(500).json("کد اشتباه است مجددا تلاش کنید");
+              res.status(500).json("Wrong Code! try again");
             }
           });
         }
@@ -71,22 +71,22 @@ module.exports = (Admin, sessionAdmin, client, jwt, rateLimit) => {
 
   router.post(
     "/login",
-    codeValidationRules(),
-    coderValidationRules(),
+    //codeValidationRules(),
+    //coderValidationRules(),
     validate,
     async (req, res) => {
       try {
         let findResponse = await Admin.findOne({
-          phoneNumber: req.body.phoneNumber,
+          email: req.body.email,
         });
         if (findResponse === null) {
-          res.status(403).json("چنین شماره ای در سامانه یاف نشد");
+          res.status(403).json("there is no such email in the DB");
         } else {
           // try verify access code first
-          client.get(req.body.phoneNumber, (err, reply) => {
+          client.get(req.body.email, (err, reply) => {
             if (err) throw err;
             else if (!reply) {
-              res.status(500).json("کد منقضی شده است");
+              res.status(500).json("the code has been expired");
             } else if (req.body.code === reply) {
               let role = "admin";
               verifyCodeLogIn(
@@ -100,7 +100,7 @@ module.exports = (Admin, sessionAdmin, client, jwt, rateLimit) => {
                 role
               );
             } else {
-              res.status(500).json("کد اشتباه است مجددا تلاش کنید");
+              res.status(500).json("wrong code");
             }
           });
         }

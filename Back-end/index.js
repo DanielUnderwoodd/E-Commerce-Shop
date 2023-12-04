@@ -18,9 +18,12 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:4002",
-    credentials: true,
-    allowedHeaders: true,
+    //origin: '*',
+     origin: "http://localhost:4002",
+     credentials: true,
+    //allowedHeaders: true,
+    
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
   })
 );
 //redis config

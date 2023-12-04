@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ProductPage from "./components/ProductPage/ProductPage";
+import Orders from "./components/Customer/Orders";
 
 class App extends Component {
   componentDidUpdate() {
@@ -50,6 +51,12 @@ class App extends Component {
           exact
           path="/customer/profile"
           component={Profile}
+        />
+        <CustomRoute
+          condition="Orders"
+          exact
+          path="/customer/orders"
+          component={Orders}
         />
         <CustomRoute
           exact

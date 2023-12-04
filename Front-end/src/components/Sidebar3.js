@@ -13,6 +13,7 @@ export default function Sidebar3({
 }) {
   const dispatch = useDispatch();
   const checkOut = () => {
+    debugger;
     if (payment.length > 0) {
       submitCheckOut();
     } else {
@@ -23,7 +24,7 @@ export default function Sidebar3({
     }
   };
   const handleprevStep = () => {
-    setSelectedAddress("");
+    setSelectedAddress(null);
     setPayment("");
     prevStep();
   };

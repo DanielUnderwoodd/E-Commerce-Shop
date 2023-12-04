@@ -86,7 +86,7 @@ class MapIr extends Component {
       lng,
     };
     const result = await this.props.search_address_coordinates(coordinates);
-    console.log(result);
+    //console.log(result);
     this.setState({
       disableButton: false,
     });

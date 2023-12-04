@@ -24,7 +24,7 @@ const authJwt = (client) => {
         try {
           let authData = {
             sessionId: token.customer.sessionId,
-            phoneNumber: token.customer.phoneNumber,
+            email: token.customer.email,
           };
           authenticateSession(Customers, authData, client, done, token);
         } catch (error) {
@@ -44,7 +44,7 @@ const authJwt = (client) => {
         try {
           let authData = {
             sessionId: token.admin.sessionId,
-            phoneNumber: token.admin.phoneNumber,
+            email: token.admin.email,
           };
           authenticateSession(Admin, authData, client, done, token);
         } catch (error) {

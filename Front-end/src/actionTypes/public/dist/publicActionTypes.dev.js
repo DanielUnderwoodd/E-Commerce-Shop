@@ -1,0 +1,24 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DELETE_TO_CART = exports.REMOVE_TO_CART = exports.CHANGE_CART = exports.FRONT_ERROR = exports.GET_PRODUCT = exports.ERROR_CLEANER = exports.ERROR = exports.SUCCESS_CLEANER = exports.SUCCESS = void 0;
+var SUCCESS = "SUCCESS";
+exports.SUCCESS = SUCCESS;
+var SUCCESS_CLEANER = "SUCCESS_CLEANER";
+exports.SUCCESS_CLEANER = SUCCESS_CLEANER;
+var ERROR = "ERROR";
+exports.ERROR = ERROR;
+var ERROR_CLEANER = "ERROR_CLEANER";
+exports.ERROR_CLEANER = ERROR_CLEANER;
+var GET_PRODUCT = "GET_PRODUCT";
+exports.GET_PRODUCT = GET_PRODUCT;
+var FRONT_ERROR = "FRONT_ERROR";
+exports.FRONT_ERROR = FRONT_ERROR;
+var CHANGE_CART = "CHANGE_CART";
+exports.CHANGE_CART = CHANGE_CART;
+var REMOVE_TO_CART = "REMOVE_TO_CART";
+exports.REMOVE_TO_CART = REMOVE_TO_CART;
+var DELETE_TO_CART = "DELETE_TO_CART";
+exports.DELETE_TO_CART = DELETE_TO_CART;

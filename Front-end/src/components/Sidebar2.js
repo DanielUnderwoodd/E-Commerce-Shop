@@ -15,11 +15,12 @@ function Sidebar2({
   const dispatch = useDispatch();
   const handleChange = (e) => {
     if (e.target.value === "on") {
-      setSelectedAddress(e.target.id);
+      var item = addresses.filter((item) => item._id == e.target.id)
+      setSelectedAddress(item);
     }
   };
   const handleprevStep = () => {
-    setSelectedAddress("");
+    setSelectedAddress(null);
     prevStep();
   };
 
@@ -54,6 +55,7 @@ function Sidebar2({
                     type="radio"
                     label={address.location}
                     id={address._id}
+                    checked={selectedAddress != null}
                   />
                   <hr />
                 </React.Fragment>

@@ -16,7 +16,7 @@ class RegisterFormFooter extends Component {
   }
 
   renderer({ seconds }) {
-    return <span> برای ارسال مجدد کد {seconds} صبر کنید</span>;
+    return <span>For a new code wait {seconds} seconds.</span>;
   }
 
   activeButton = () => {
@@ -31,15 +31,21 @@ class RegisterFormFooter extends Component {
     });
     this.props.send_code_again(this.props.phoneNumber);
   };
+  
+  
+
   submitLogIn = () => {
+    debugger;
+
     let code = document.getElementById("code").value;
     const user = {
-      phoneNumber: this.props.phoneNumber,
+      email: this.props.setEmail,
       code: code,
     };
     this.props.submit_sign_in(user);
   };
   submitSignUp = () => {
+    
     let code = document.getElementById("code").value;
     let email = document.getElementById("email").value;
     let firstName = document.getElementById("firstName").value;
@@ -65,14 +71,14 @@ class RegisterFormFooter extends Component {
                   onClick={this.submitLogIn}
                   className="submit-btn-code-form"
                 >
-                  تایید
+                  Submit
                 </Button>
               ) : (
                 <Button
                   onClick={this.submitSignUp}
                   className="submit-btn-code-form"
                 >
-                  تایید
+                  Submit
                 </Button>
               )}
             </Col>
@@ -82,7 +88,7 @@ class RegisterFormFooter extends Component {
                 onClick={this.diactivateButton}
                 className="submit-btn-code-form"
               >
-                ارسال مجدد
+                Send again
               </Button>
             </Col>
           </Row>

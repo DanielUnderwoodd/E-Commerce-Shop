@@ -33,7 +33,7 @@ class AddressFooterBar extends Component {
               fill="#FF6A00"
             />
           </svg>
-          <h3>آدرس ها</h3>
+          <h3>Addresses</h3>
         </ListGroup.Item>
         <div className="addresses">
           {this.props.address.map((address, index) => (
@@ -97,7 +97,7 @@ class AddressFooterBar extends Component {
           >
             <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="black" />
           </svg>
-          افزوردن آدرس جدید
+        Add new address
         </ListGroup.Item>
       </ListGroup>
     );

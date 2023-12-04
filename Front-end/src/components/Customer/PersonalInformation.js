@@ -53,14 +53,14 @@ class PersonalInformation extends Component {
               />
             </g>
           </svg>
-          <h3>مشخصات فردی</h3>
+          <h3>Info</h3>
         </ListGroup.Item>
         <ListGroup.Item>
           <Form className="user-info">
             <Row>
               <Col>
                 <Form.Group>
-                  <Form.Label>نام </Form.Label>
+                  <Form.Label>name </Form.Label>
                   <Form.Control
                     name="firstName"
                     type="text"
@@ -71,7 +71,7 @@ class PersonalInformation extends Component {
               </Col>
               <Col>
                 <Form.Group>
-                  <Form.Label>نام خانوادگی</Form.Label>
+                  <Form.Label>Family</Form.Label>
                   <Form.Control
                     name="lastName"
                     type="text"
@@ -84,7 +84,7 @@ class PersonalInformation extends Component {
             <Row>
               <Col>
                 <Form.Group>
-                  <Form.Label>شماره تماس </Form.Label>
+                  <Form.Label>Call number</Form.Label>
                   <Form.Control
                     value={this.props.phoneNumber}
                     type="text"
@@ -94,7 +94,7 @@ class PersonalInformation extends Component {
               </Col>
               <Col>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>ایمیل</Form.Label>
+                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     name="email"
                     type="email"
@@ -110,7 +110,7 @@ class PersonalInformation extends Component {
               variant="primary"
               type="submit"
             >
-              اعمال تغییرات
+              Save Changes
             </Button>
           </Form>
         </ListGroup.Item>

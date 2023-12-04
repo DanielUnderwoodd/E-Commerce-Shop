@@ -12,25 +12,32 @@ function SidebarContent({
   setLoginModal,
   isLogIn,
   check_out,
+  userEmail,
 }) {
+  debugger;
   const [step, setStep] = useState(1);
-  const [selectedAddress, setSelectedAddress] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState(null);
   const [payment, setPayment] = useState("");
 
   const submitCheckOut = () => {
-    const newCart = cart.map((product) => {
-      return {
-        quantity: product.quantity,
-        product_id: product.id,
-      };
-    });
-    let data = {
-      cart: newCart,
-      address_id: selectedAddress,
-    };
-    if (payment === "unpay") {
-      data.is_payed = false;
+    debugger;
+    let data = {}
+    data.products = "";
+    data.productsCount = cart.length;
+
+    for(let i =0; i < cart.length; i++){
+      data.products += cart[i].text;
+      data.products += " ,count: " + cart[i].quantity;
     }
+
+    data.address = selectedAddress[0].location;
+    data.is_payed = payment != "unpay";
+
+    data.totalPrice = 0;
+    for(let i=0;i<cart.length;i++){
+      data.totalPrice += (Number(cart[i].price) * cart[i].quantity);
+    }
+    data.userEmail = userEmail;
 
     check_out(data);
   };
@@ -77,10 +84,12 @@ function SidebarContent({
 }
 
 const mapPropsToState = (state) => {
+  debugger;
   const { auth, _public } = state;
   return {
     isLogIn: auth.isLogIn,
     cart: _public.cart,
+    userEmail: state.customer.email
   };
 };
 

@@ -81,7 +81,7 @@ class Header extends Component {
                     />
                   </g>
                 </svg>
-                ورود/عضویت
+                Login/Register
               </Button>
             </Col>
           )}
@@ -95,6 +95,7 @@ class Header extends Component {
             </Form>
           </Col>
           <Col>
+            <a href="/"> 
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="76"
@@ -106,7 +107,8 @@ class Header extends Component {
                 transform="translate(-6 -4)"
                 fill="#ff6a00"
               />
-            </svg>
+              </svg>
+              </a>
           </Col>
         </Row>
         <RegisterForm show={this.state.modalShow} onHide={this.setModalHide} />

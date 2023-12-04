@@ -6,3 +6,4 @@ export const CLEAN = "CLEAN";
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 export const UPDATE_CUSTOMER_PROFILE = "UPDATE_CUSTOMER_PROFILE";
 export const CLEAN_CART = "CLEAN_CART";
+export const GET_ORDER = "GET_ORDER";

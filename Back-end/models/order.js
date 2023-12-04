@@ -8,54 +8,29 @@ var order = Schema({
     type: String,
     required: true,
   },
-  receiver: {
+  userEmail: {
     type: String,
     required: true,
   },
   address: {
-    type: Object,
+    type: String,
     required: true,
   },
-  numberOfItems: {
+  productsCount: {
     type: Number,
     required: true,
   },
-  totalOrderAmount: {
+  totalPrice: {
     type: String,
     required: true,
   },
-  theAmountPayable: {
-    type: String,
+  isPayed: {
+    type: Boolean,
     required: true,
   },
-  cart: [
-    {
-      price: {
-        type: String,
-        required: true,
-      },
-      discount: {
-        type: String,
-        required: true,
-      },
-      number: {
-        type: Number,
-        required: true,
-      },
-      product: { type: Schema.Types.String, ref: "products" },
-    },
-  ],
-
-  deliverySchedule: {
-    timeRange: { type: Schema.Types.String, ref: "deliveryschedules" },
-    price: {
-      type: String,
-      require: true,
-    },
-    discount: {
-      type: String,
-      default: 0,
-    },
+  products: {
+    type: String,
+    required: true,
   },
 });
 

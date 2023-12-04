@@ -1,9 +1,11 @@
 const express = require("express");
 const uniqid = require("uniqid");
+//const order = require('../../models/order.js');
 
 const router = express.Router();
 const { userValidationRules, validate } = require("../../validator/user.js");
 const { addAddressValidationRules } = require("../../validator/addAddress");
+const OrderModel = require("../../models/order");
 module.exports = (Customers, sessionCustomers, client, jwt) => {
   // log out current customer
   router.get("/logout", async (req, res) => {
@@ -74,7 +76,7 @@ module.exports = (Customers, sessionCustomers, client, jwt) => {
   });
   router.post(
     "/add-address",
-    addAddressValidationRules(),
+    //addAddressValidationRules(),
     validate,
     async (req, res) => {
       let address = {
@@ -134,7 +136,7 @@ module.exports = (Customers, sessionCustomers, client, jwt) => {
   );
   router.put(
     "/add-address",
-    addAddressValidationRules(),
+    //addAddressValidationRules(),
     validate,
     async (req, res) => {
       let address = {
@@ -207,5 +209,89 @@ module.exports = (Customers, sessionCustomers, client, jwt) => {
     }
   });
 
+
+  router.post(
+    "/check-out",
+  
+    async (req, res) => {
+      // console.log(order);
+
+      // console.log(req.body.address);
+      // console.log(req.body.is_payed);
+      // console.log(req.body.totalPrice);
+      // //console.log(req.body.userEmail);
+      // console.log(req.body.products);
+      // console.log(req.body.productsCount);
+  
+      try {
+        let userFound = await Customers.findOne({
+                  email: req.body.userEmail,
+                });
+                if(userFound){
+                  const newOrder = new OrderModel({
+                    _id : uniqid(),
+                    userEmail: req.body.userEmail,
+                    address: req.body.address,
+                    productsCount: req.body.productsCount,
+                    totalPrice: req.body.totalPrice,
+                    isPayed: req.body.is_payed,
+                    products: req.body.products
+                  });
+                  
+                  await newOrder.save(function (err, result) {
+                    console.log(err, result)
+                    res.status(200).json({
+                          msg: "order has been added",
+                          result: result,
+                        });
+                    });
+
+//                   const User = require('../models/user.js');    
+
+// var user = new User({
+//   a: 'abc'
+// });
+
+// user.save(function (err, results) {
+//   console.log(results._id);
+// });
+                }else{ console.log(3);}
+
+        // let checkoutResponse = await Customers.findOneAndUpdate(
+        //   queryCustomerAddressId,
+        //   {
+        //     $set: {
+        //       "address.$.phoneNumber": address.phoneNumber,
+        //       "address.$.location": address.location,
+        //     },
+        //   },
+        //   {
+        //     new: true,
+        //   }
+        // );
+        // if (checkoutResponse) {
+        //   res.status(200).json({
+        //     msg: "Address has been updated",
+        //     address: checkoutResponse.address,
+        //   });
+        // } else {
+        //   res.status(500).json("Address has not been updated, try again");
+        // }
+      } catch (err) {
+        res.status(500).json(err);
+        console.log(`error ocur in customer/pv/add-address put Method: ${err}`);
+      }
+    }
+  );
+
+router.post("/orders", async (req, res) => {
+  console.log(req.body);
+  try {
+    let orders = await OrderModel.find( {userEmail: req.body.userEmail} ).exec();
+    res.status(200).json(orders);
+  } catch (err) {
+    res.send(err);
+  }
+});
   return router;
 };

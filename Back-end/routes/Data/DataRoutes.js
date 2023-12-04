@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productModel = require("../../models/product");
+const OrderModel = require("../../models/order");
 
 router.get("/products", async (req, res) => {
   try {
@@ -19,6 +20,22 @@ router.get("/products", async (req, res) => {
     res.send(err);
   }
 });
+
+
+
+// app.get("/findname", async (req, res)=>{
+//   try{
+//     if(req.query.name){
+//       let singlePerson = await Person.find({name: req.query.name}).exec();
+//       return res.json(singlePerson);
+//     }else{
+//       res.json({error: "No name query found inside request"})
+//     }
+//   }catch(error){
+//     throw error
+//   }
+// })
+
 
 router.get("/products/search", async (req, res) => {
   try {
@@ -40,3 +57,4 @@ router.get("/products/search", async (req, res) => {
 });
 
 module.exports = router;
+

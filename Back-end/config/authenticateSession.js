@@ -4,7 +4,7 @@ const authenticateSession = (Model, authData, client, done, token) => {
     if (err) throw err;
     else if (reply === null || reply === false) {
       let findOneResponse = await Model.findOne({
-        phoneNumber: authData.phoneNumber,
+        email: authData.email,
       });
 
       if (findOneResponse) {

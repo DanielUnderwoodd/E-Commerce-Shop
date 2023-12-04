@@ -9,7 +9,7 @@ const verifyCodeRegister = (
   jwt,
   role
 ) => {
-  client.del(req.body.phoneNumber, async (err, reply) => {
+  client.del(req.body.email, async (err, reply) => {
     if (err) throw err;
     if (reply === 1) {
       var cookieName = "";

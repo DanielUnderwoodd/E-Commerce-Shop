@@ -12,7 +12,7 @@ class VerificationCode extends Component {
     };
   }
   errorHandler(e) {
-    e.target.setCustomValidity("فرمت شماره همراه صحیح نمی باشد");
+    e.target.setCustomValidity("this is not a valid number");
   }
 
   sendCodeHandler = async (e) => {
@@ -20,16 +20,17 @@ class VerificationCode extends Component {
       disableButton: true,
     });
     e.preventDefault();
-    let phoneNumber = document.getElementById("phoneNumber").value;
+    let email = document.getElementById("email").value;
     try {
-      let result = await this.props.send_code(phoneNumber);
+      let result = await this.props.send_code(email);
       this.setState({
         disableButton: false,
       });
 
       if (!result.error) {
-        this.props.setPhoneNumber(phoneNumber);
+        debugger;        
         this.props.changeCurrentStep(1);
+        this.props.setEmail(email);
       }
       if (result.isRegistered !== null) {
         this.props.setIsRegistered(result.isRegistered);
@@ -60,19 +61,19 @@ class VerificationCode extends Component {
                   />
                 </g>
               </svg>
-              <h4>ورود/عضویت</h4>
+              <h4>Login/Register</h4>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group>
                 <Form.Control
-                  id="phoneNumber"
-                  onInvalid={this.errorHandler}
-                  pattern="^(?:(٠٩[٠-٩][٠-٩]{8})|(۰۹[۰-۹][۰-۹]{8})|(09[0-9][0-9]{8}))$"
+                  id="email"
+                  //onInvalid={this.errorHandler}
+                  //pattern="^(?:(٠٩[٠-٩][٠-٩]{8})|(۰۹[۰-۹][۰-۹]{8})|(09[0-9][0-9]{8}))$"
                   type="text"
-                  maxLength={11}
-                  placeholder="شماره موبایل خود را وارد کنید"
+                  //maxLength={11}
+                  placeholder="Enter your email address"
                 />
               </Form.Group>
               <div className="text-center">
@@ -81,7 +82,7 @@ class VerificationCode extends Component {
                   onClick={this.sendCodeHandler}
                   className="submit-btn-code-form"
                   type="submit">
-                  تایید
+                  Submit
                 </Button>
               </div>
             </Form>

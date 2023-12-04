@@ -59,7 +59,6 @@ class Authenticate extends Component {
               />
             </g>
           </svg>
-          دانیال فرضی
         </Button>
         <Overlay
           show={this.state.show}
@@ -77,17 +76,17 @@ class Authenticate extends Component {
             </Popover.Title>
             <Popover.Content>
               <ul>
-                <li>اعتبار: {this.props.balance} تومان</li>
+                <li>Credit: {this.props.balance} $</li>
               </ul>
               <ul className="popover-footer">
                 <li>
-                  <Link to="/customer/profile">پروفایل</Link>
+                  <Link to="/customer/profile">Profile</Link>
                 </li>
                 <li>
-                  <Link to="/orders">سفارش‌های پیشین</Link>
+                  <Link to="/customer/orders">Orders</Link>
                 </li>
                 <li>
-                  <span onClick={this.logOut}>خروج</span>
+                  <span onClick={this.logOut}>Logout</span>
                 </li>
               </ul>
             </Popover.Content>

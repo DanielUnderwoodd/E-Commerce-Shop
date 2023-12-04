@@ -6,9 +6,9 @@ import { ERROR } from "../../actionTypes/public/publicActionTypes";
 import api from "../../config/api";
 import { errorHandler } from "../error/errorHandler";
 
-export const send_code = (phoneNumber) => async (dispatch) => {
+export const send_code = (email) => async (dispatch) => {
   try {
-    const response = await api.post("/customer/pb/code", { phoneNumber });
+    const response = await api.post("/customer/pb/code", { email });
     return {
       error: false,
       isRegistered: response.data.isRegistered,
@@ -21,9 +21,9 @@ export const send_code = (phoneNumber) => async (dispatch) => {
     };
   }
 };
-export const send_code_again = (phoneNumber) => async (dispatch) => {
+export const send_code_again = (email) => async (dispatch) => {
   try {
-    const response = await api.post("/customer/pb/code", { phoneNumber });
+    const response = await api.post("/customer/pb/code", { email });
     dispatch({
       type: SEND_CODE,
       payload: response.data.isRegistered,
@@ -34,10 +34,10 @@ export const send_code_again = (phoneNumber) => async (dispatch) => {
 };
 
 export const submit_sign_in = (user) => async (dispatch) => {
-  const { phoneNumber, code } = user;
+  const { email, code } = user;
   try {
     const response = await api.post("/customer/pb/login", {
-      phoneNumber,
+      email,
       code,
     });
 
@@ -55,10 +55,9 @@ export const submit_sign_in = (user) => async (dispatch) => {
 };
 
 export const submit_sign_up = (user) => async (dispatch) => {
-  const { phoneNumber, code, email, firstName, lastName } = user;
+  const {  code, email, firstName, lastName } = user;
   try {
     const response = await api.post("/customer/pb/register", {
-      phoneNumber,
       code,
       firstName,
       lastName,

@@ -13,6 +13,7 @@ class RegisterForm extends Component {
       currentStep: 0,
       phoneNumber: null,
       isRegistered: null,
+      email: null
     };
   }
   changeCurrentStep = (selectedStep) => {
@@ -40,6 +41,17 @@ class RegisterForm extends Component {
       };
     });
   };
+
+  setEmail = (email) => {
+    this.setState((preState) => {
+      return {
+        ...preState,
+        email,
+      };
+    });
+  };
+
+
   setIsRegistered = (isRegistered) => {
     this.setState((preState) => {
       return {
@@ -62,6 +74,7 @@ class RegisterForm extends Component {
             currentStep={this.state.currentStep}
             setPhoneNumber={this.setPhoneNumber}
             setIsRegistered={this.setIsRegistered}
+            setEmail={this.setEmail}
           />
           {this.state.isRegistered ? (
             <SignIn
@@ -69,6 +82,7 @@ class RegisterForm extends Component {
               currentStep={this.state.currentStep}
               phoneNumber={this.state.phoneNumber}
               isRegistered={this.state.isRegistered}
+              setEmail={this.state.email}
             />
           ) : (
             <SignUp
@@ -76,6 +90,7 @@ class RegisterForm extends Component {
               currentStep={this.state.currentStep}
               phoneNumber={this.state.phoneNumber}
               isRegistered={this.state.isRegistered}
+              setEmail={this.state.email}
             />
           )}
         </Modal>
